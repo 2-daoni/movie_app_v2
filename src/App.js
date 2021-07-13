@@ -1,51 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const oniLike = [
-  {
-    id: 1,
-    name: "gosomi",
-    rating: 3
-  },
-  {
-    id: 2,
-    name: "ddangkong",
-    rating: 5
-  },
-  {
-    id: 3,
-    name: "BR",
-    rating: 4.9
-  },
-  {
-    id: 4,
-    name: "hs",
-    rating: 5
+class App extends React.Component {
+  state = {
+    count: 0
+  };
+
+  add = () => {
+    this.setState(current => ({ count: this.state.count + 1 }));
+  };
+  minus = () => {
+    this.setState(current({ count: this.state.count - 1 }));
+
+  };
+
+  render() {
+    return (
+      <div>
+        <h1>The number is: {this.state.count} </h1>
+        <button onClick={this.add}>Add</button>
+        <button onClick={this.minus}>Minus</button>
+      </div>
+    );
   }
-]
-
-function Oni({ name, rating }) {
-  return (
-    <div>
-      <h2>I like {name}</h2>
-      <h4>{rating}/5.0</h4>
-    </div>
-  );
-}
-
-Oni.propTypes = {
-  name: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired
-};
-
-function App() {
-  return (
-    <div>
-      {oniLike.map(fav => (
-        <Oni key={fav.id} name={fav.name} rating={fav.rating} />
-      ))}
-    </div>
-  );
 }
 
 export default App;
